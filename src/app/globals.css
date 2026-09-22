@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: #fff8fb;
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+:root {
+  --spotlight-color: rgba(244, 114, 182, 0.16);
+}
+.dark {
+  --spotlight-color: rgba(168, 85, 247, 0.2);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+  background-color: #fff8fb;
+  background-image: radial-gradient(
+      ellipse 70% 50% at 15% 0%,
+      rgba(251, 207, 232, 0.55),
+      transparent 60%
+    ),
+    radial-gradient(ellipse 60% 45% at 100% 10%, rgba(233, 213, 255, 0.4), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(254, 205, 211, 0.45), transparent 60%);
+  background-attachment: fixed;
+}
+
+.dark body {
+  background-color: #05060a;
+  background-image: radial-gradient(ellipse 70% 50% at 15% 0%, rgba(139, 92, 246, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 100% 10%, rgba(217, 70, 239, 0.14), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, rgba(139, 92, 246, 0.12), transparent 60%);
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+}
+
+/* Fallback crossfade for browsers without the View Transitions API.
+   Scoped to a temporary class so normal hover/interaction transitions stay snappy. */
+html.theme-transitioning,
+html.theme-transitioning *,
+html.theme-transitioning *::before,
+html.theme-transitioning *::after {
+  transition:
+    background-color 2s ease,
+    border-color 2s ease,
+    color 2s ease,
+    fill 2s ease,
+    stroke 2s ease,
+    box-shadow 2s ease,
+    opacity 2s ease !important;
+}
+
+/* Theme toggle: an advancing mist circle that grows from the toggle button,
+   revealing the new theme underneath as it sweeps across the screen. */
+@property --reveal {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+
+::view-transition-group(root) {
+  animation-duration: 2.6s;
+}
+::view-transition-old(root) {
+  animation: none;
+}
+::view-transition-new(root) {
+  animation: mist-reveal 2.6s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  mask-image: radial-gradient(
+    circle at var(--vt-x, 50%) var(--vt-y, 50%),
+    black 0%,
+    black calc(var(--reveal) - 10%),
+    rgba(0, 0, 0, 0.55) calc(var(--reveal) - 4%),
+    transparent var(--reveal)
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at var(--vt-x, 50%) var(--vt-y, 50%),
+    black 0%,
+    black calc(var(--reveal) - 10%),
+    rgba(0, 0, 0, 0.55) calc(var(--reveal) - 4%),
+    transparent var(--reveal)
+  );
+}
+@keyframes mist-reveal {
+  from {
+    --reveal: 0%;
+  }
+  to {
+    --reveal: 150%;
+  }
+}
+
+::selection {
+  background: rgba(244, 114, 182, 0.3);
+}
+.dark ::selection {
+  background: rgba(217, 70, 239, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #fff0f6;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #05060a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #fb7185, #f472b6, #c084fc);
+  border-radius: 999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8b5cf6, #d946ef, #a855f7);
+}
+
+/* Gradient text ------------------------------------------------------ */
+.text-gradient {
+  background: linear-gradient(90deg, #fb7185, #db2777, #7e22ce, #fb7185);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+.dark .text-gradient {
+  background: linear-gradient(90deg, #a78bfa, #d946ef, #8b5cf6, #a78bfa);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 300% center;
+  }
+}
+
+/* Glass surfaces ------------------------------------------------------ */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.55));
+  border: 1px solid rgba(219, 39, 119, 0.12);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px -25px rgba(219, 39, 119, 0.35);
+}
+.dark .glass-card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px -25px rgba(139, 92, 246, 0.35);
+}
+
+/* Background grid ------------------------------------------------------ */
+.grid-mask {
+  background-image: linear-gradient(to right, rgba(219, 39, 119, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(219, 39, 119, 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+.dark .grid-mask {
+  background-image: linear-gradient(to right, rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+}
+
+/* Animated conic-gradient border, used for the featured pricing card --- */
+.gradient-border {
+  position: relative;
+  isolation: isolate;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(from var(--angle, 0deg), #fb7185, #db2777, #7e22ce, #fb7185);
+  animation: spin-border 5s linear infinite;
+}
+.dark .gradient-border::before {
+  background: conic-gradient(from var(--angle, 0deg), #8b5cf6, #d946ef, #a78bfa, #8b5cf6);
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Floating decorative elements ------------------------------------------------------ */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  80%,
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
+}
+
+/* Spotlight hover glow (mouse-tracked) --------------------------------- */
+.spotlight {
+  position: relative;
+  overflow: hidden;
+}
+.spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    260px circle at var(--x, 50%) var(--y, 50%),
+    var(--spotlight-color),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.spotlight:hover::after {
+  opacity: 1;
+}
