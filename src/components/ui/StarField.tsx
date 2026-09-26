@@ -70,19 +70,20 @@ export function StarField() {
     let animationId = 0;
     let lastMeteorAt = 0;
     let lastRocketAt = 0;
+    let running = true;
 
     function resize() {
       if (!canvas) return;
       width = window.innerWidth;
       height = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const density = Math.min(220, Math.floor((width * height) / 6000));
+      const density = Math.min(120, Math.floor((width * height) / 12000));
       stars = Array.from({ length: density }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
@@ -126,7 +127,7 @@ export function StarField() {
     }
 
     function draw(time: number) {
-      if (!ctx) return;
+      if (!ctx || !running) return;
       ctx.clearRect(0, 0, width, height);
 
       for (const s of stars) {
@@ -248,12 +249,21 @@ export function StarField() {
       animationId = requestAnimationFrame(draw);
     }
 
+    function onVisibility() {
+      running = document.visibilityState === "visible";
+      if (running) animationId = requestAnimationFrame(draw);
+      else cancelAnimationFrame(animationId);
+    }
+
     resize();
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibility);
     animationId = requestAnimationFrame(draw);
 
     return () => {
+      running = false;
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(animationId);
     };
   }, []);

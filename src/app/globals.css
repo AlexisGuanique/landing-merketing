@@ -29,7 +29,13 @@ body {
     ),
     radial-gradient(ellipse 60% 45% at 100% 10%, rgba(233, 213, 255, 0.4), transparent 55%),
     radial-gradient(ellipse 70% 50% at 50% 100%, rgba(254, 205, 211, 0.45), transparent 60%);
-  background-attachment: fixed;
+  background-attachment: scroll;
+}
+
+@media (min-width: 769px) {
+  body {
+    background-attachment: fixed;
+  }
 }
 
 .dark body {
@@ -147,15 +153,23 @@ html.theme-transitioning *::after {
 
 /* Glass surfaces ------------------------------------------------------ */
 .glass-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.55));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
   border: 1px solid rgba(219, 39, 119, 0.12);
-  backdrop-filter: blur(16px);
   box-shadow: 0 20px 50px -25px rgba(219, 39, 119, 0.35);
 }
 .dark .glass-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 20px 50px -25px rgba(139, 92, 246, 0.35);
+}
+@media (min-width: 769px) {
+  .glass-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.55));
+    backdrop-filter: blur(16px);
+  }
+  .dark .glass-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  }
 }
 
 /* Background grid ------------------------------------------------------ */
@@ -210,6 +224,19 @@ html.theme-transitioning *::after {
 }
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-pulse-ring,
+  .text-gradient,
+  .gradient-border::before {
+    animation: none !important;
+  }
+
+  .text-gradient {
+    background-position: 0% center;
+  }
 }
 
 @keyframes pulse-ring {

@@ -25,12 +25,15 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const timeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   useEffect(() => {
-    // Synced once on mount from localStorage, which only exists client-side;
-    // the inline anti-flash script already applied the "dark" class to <html>
-    // before hydration, this just brings React state in line with it.
+    // Prefer the class already applied by the anti-flash script to avoid
+    // mounting the wrong background canvas for a frame.
+    const fromDom = document.documentElement.classList.contains("dark");
     const stored = localStorage.getItem("theme");
+    const next: Theme = fromDom || stored === "dark" ? "dark" : "light";
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    if (stored === "dark") setTheme("dark");
+    setTheme(next);
+    if (next === "dark") document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
 
     const pending = timeouts.current;
     return () => {

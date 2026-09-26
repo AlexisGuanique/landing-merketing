@@ -60,6 +60,7 @@ export function PetalField() {
     let petals: Petal[] = [];
     let animationId = 0;
     let windPhase = 0;
+    let running = true;
 
     function makePetal(randomY = false): Petal {
       return {
@@ -81,19 +82,19 @@ export function PetalField() {
       if (!canvas) return;
       width = window.innerWidth;
       height = window.innerHeight;
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      const density = Math.min(55, Math.max(18, Math.floor((width * height) / 32000)));
+      const density = Math.min(28, Math.max(12, Math.floor((width * height) / 55000)));
       petals = Array.from({ length: density }, () => makePetal(true));
     }
 
     function draw(time: number) {
-      if (!ctx) return;
+      if (!ctx || !running) return;
       ctx.clearRect(0, 0, width, height);
 
       if (reduceMotion) {
@@ -133,12 +134,21 @@ export function PetalField() {
       animationId = requestAnimationFrame(draw);
     }
 
+    function onVisibility() {
+      running = document.visibilityState === "visible";
+      if (running) animationId = requestAnimationFrame(draw);
+      else cancelAnimationFrame(animationId);
+    }
+
     resize();
     window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", onVisibility);
     animationId = requestAnimationFrame(draw);
 
     return () => {
+      running = false;
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(animationId);
     };
   }, []);

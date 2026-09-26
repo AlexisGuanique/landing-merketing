@@ -37,7 +37,7 @@ export function AddOns() {
                 key={item.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-60px" }}
+                viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 onMouseMove={handleMove}
                 className="spotlight rounded-2xl border border-dashed border-pink-300/50 bg-white/40 p-6 transition-colors hover:border-pink-400 hover:bg-white/70 dark:border-white/15 dark:bg-white/[0.02] dark:hover:border-fuchsia-400/40 dark:hover:bg-white/[0.04]"

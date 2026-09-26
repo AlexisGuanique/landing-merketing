@@ -27,7 +27,7 @@ export function Navbar() {
         <div
           className={`flex items-center justify-between rounded-2xl border px-4 py-3 transition-all duration-300 ${
             scrolled
-              ? "border-pink-200/60 bg-white/70 backdrop-blur-xl shadow-lg shadow-pink-300/20 dark:border-white/10 dark:bg-black/60 dark:shadow-black/20"
+              ? "border-pink-200/60 bg-white/90 shadow-lg shadow-pink-300/20 md:bg-white/70 md:backdrop-blur-xl dark:border-white/10 dark:bg-black/80 dark:shadow-black/20 dark:md:bg-black/60"
               : "border-transparent bg-transparent"
           }`}
         >

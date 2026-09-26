@@ -17,7 +17,7 @@ export function SectionHeading({
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: "-80px" }}
+      viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`mx-auto max-w-2xl ${align === "center" ? "text-center" : "text-left mx-0"}`}
     >

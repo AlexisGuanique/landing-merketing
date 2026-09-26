@@ -15,17 +15,17 @@ const chips = [
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden pt-40 pb-28 sm:pt-48 sm:pb-36">
+    <section id="top" className="relative overflow-hidden pt-28 pb-16 sm:pt-48 sm:pb-36">
       <GradientOrbs />
       <div className="absolute inset-0 -z-20 grid-mask" />
 
-      <div className="mx-auto max-w-5xl px-6 text-center">
+      <div className="mx-auto max-w-5xl px-5 text-center sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 rounded-full border border-pink-300/40 bg-pink-50/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-pink-600 dark:border-violet-400/20 dark:bg-violet-400/5 dark:text-fuchsia-300"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex max-w-full items-center gap-2 rounded-full border border-pink-300/40 bg-pink-50/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-pink-600 sm:px-4 sm:text-xs dark:border-violet-400/20 dark:bg-violet-400/5 dark:text-fuchsia-300"
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-pink-400 opacity-75 dark:bg-fuchsia-400" />
@@ -37,9 +37,9 @@ export function Hero() {
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="mx-auto mt-8 max-w-4xl font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-[#3b2430] sm:text-6xl dark:text-white"
+          className="mx-auto mt-8 max-w-4xl font-display text-[1.85rem] font-extrabold leading-[1.15] tracking-tight text-[#3b2430] sm:text-6xl dark:text-white"
         >
           Convertimos tu emprendimiento en una{" "}
           <span className="text-gradient">marca digital</span> que vende
@@ -48,7 +48,7 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-[#7a6270] sm:text-lg dark:text-white/60"
         >
@@ -60,7 +60,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.3 }}
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
@@ -85,14 +85,14 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
+          className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-2.5 sm:mt-16 sm:gap-3 sm:grid-cols-4"
         >
           {chips.map(({ icon: Icon, label }, i) => (
             <motion.div
               key={label}
-              className="glass-card flex animate-float flex-col items-center gap-2.5 rounded-2xl px-4 py-5 text-center"
+              className="glass-card flex animate-float flex-col items-center gap-2 rounded-2xl px-3 py-4 text-center sm:gap-2.5 sm:px-4 sm:py-5"
               style={{ animationDelay: `${i * 0.4}s` }}
               whileHover={{ scale: 1.06, borderColor: "rgba(244,114,182,0.4)" }}
             >

@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { motion, useSpring } from "framer-motion";
+import { useIsMobilePerf } from "@/hooks/useMediaQuery";
 
 export function TiltCard({
   children,
@@ -10,10 +11,15 @@ export function TiltCard({
   children: ReactNode;
   className?: string;
 }) {
+  const isMobile = useIsMobilePerf();
   const ref = useRef<HTMLDivElement>(null);
 
   const rotateX = useSpring(0, { stiffness: 200, damping: 20 });
   const rotateY = useSpring(0, { stiffness: 200, damping: 20 });
+
+  if (isMobile) {
+    return <div className={`group relative ${className}`}>{children}</div>;
+  }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = ref.current;

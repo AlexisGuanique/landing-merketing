@@ -25,7 +25,7 @@ export function Faq() {
                 key={faq.question}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-40px" }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="glass-card overflow-hidden rounded-2xl transition-colors hover:border-pink-300/50 dark:hover:border-fuchsia-400/30"
               >

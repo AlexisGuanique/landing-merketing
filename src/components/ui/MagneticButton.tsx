@@ -2,6 +2,7 @@
 
 import { useRef, type ReactNode } from "react";
 import { motion, useSpring } from "framer-motion";
+import { useIsMobilePerf } from "@/hooks/useMediaQuery";
 
 export function MagneticButton({
   children,
@@ -16,9 +17,18 @@ export function MagneticButton({
   rel?: string;
   className?: string;
 }) {
+  const isMobile = useIsMobilePerf();
   const ref = useRef<HTMLAnchorElement>(null);
   const x = useSpring(0, { stiffness: 250, damping: 18 });
   const y = useSpring(0, { stiffness: 250, damping: 18 });
+
+  if (isMobile) {
+    return (
+      <a href={href} target={target} rel={rel} className={className}>
+        {children}
+      </a>
+    );
+  }
 
   function handleMouseMove(e: React.MouseEvent<HTMLAnchorElement>) {
     const el = ref.current;

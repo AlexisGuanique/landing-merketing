@@ -12,7 +12,7 @@ export function CtaSection() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
           className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-500 via-pink-600 to-purple-700 px-8 py-16 text-center shadow-2xl shadow-pink-400/30 sm:px-16 dark:from-violet-600 dark:via-fuchsia-600 dark:to-purple-800 dark:shadow-fuchsia-500/20"
         >

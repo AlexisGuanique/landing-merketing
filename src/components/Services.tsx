@@ -27,7 +27,7 @@ export function Services() {
                 key={service.title}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-60px" }}
+                viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <TiltCard className="overflow-hidden rounded-2xl border border-pink-200/60 bg-white/70 transition-colors hover:border-pink-300 dark:border-white/10 dark:bg-white/[0.02] dark:hover:border-white/20">

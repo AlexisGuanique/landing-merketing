@@ -19,7 +19,7 @@ export function Process() {
           <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
-            viewport={{ once: false }}
+            viewport={{ once: true }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="absolute top-10 left-0 hidden h-px w-full origin-left bg-gradient-to-r from-rose-300/70 via-pink-300/70 to-purple-300/70 lg:block dark:from-violet-400/40 dark:via-fuchsia-400/40 dark:to-purple-400/40"
           />
@@ -28,7 +28,7 @@ export function Process() {
               key={item.step}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-60px" }}
+              viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.12 }}
             >
               <TiltCard className="relative rounded-2xl border border-pink-200/60 bg-white/70 p-6 dark:border-white/10 dark:bg-white/[0.03]">
