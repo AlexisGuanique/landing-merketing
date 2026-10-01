@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { CreditCard, MessageCircle, ShoppingCart, Truck, type LucideIcon } from "lucide-react";
-import { addOns } from "@/lib/constants";
+import { addOnCatalog } from "@/lib/constants";
+import type { Dictionary } from "@/i18n/types";
 import { SectionHeading } from "./ui/SectionHeading";
 
 const icons: Record<string, LucideIcon> = {
@@ -19,22 +20,23 @@ function handleMove(e: React.MouseEvent<HTMLDivElement>) {
   el.style.setProperty("--y", `${((e.clientY - rect.top) / rect.height) * 100}%`);
 }
 
-export function AddOns() {
+export function AddOns({ copy }: { copy: Dictionary["addOns"] }) {
   return (
     <section id="modulos" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          eyebrow="Módulos a medida"
-          title="Hacé crecer tu web con módulos adicionales"
-          description="Sumá funcionalidades a tu página cuando tu negocio esté listo para el siguiente paso. Cada módulo se cotiza según tu proyecto."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
         />
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {addOns.map((item, i) => {
+          {addOnCatalog.map((item, i) => {
             const Icon = icons[item.icon];
+            const content = copy.items[item.id];
             return (
               <motion.div
-                key={item.title}
+                key={item.id}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -46,10 +48,10 @@ export function AddOns() {
                   <Icon className="h-5 w-5" />
                 </span>
                 <h3 className="relative z-10 mt-5 font-display text-base font-bold text-[#3b2430] dark:text-white">
-                  {item.title}
+                  {content.title}
                 </h3>
                 <p className="relative z-10 mt-2 text-sm leading-relaxed text-[#7a6270] dark:text-white/60">
-                  {item.description}
+                  {content.description}
                 </p>
               </motion.div>
             );

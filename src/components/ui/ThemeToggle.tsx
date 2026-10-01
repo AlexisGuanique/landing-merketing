@@ -2,9 +2,16 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Moon, Sun } from "lucide-react";
+import type { Dictionary } from "@/i18n/types";
 import { useTheme } from "../ThemeProvider";
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
+export function ThemeToggle({
+  labels,
+  className = "",
+}: {
+  labels: Dictionary["theme"];
+  className?: string;
+}) {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
 
@@ -17,7 +24,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       type="button"
       onClick={handleClick}
-      aria-label={isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro"}
+      aria-label={isDark ? labels.switchToLight : labels.switchToDark}
       className={`relative flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-pink-300/50 bg-white/60 text-[#3b2430] transition-colors hover:bg-white/90 dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10 ${className}`}
     >
       <AnimatePresence mode="wait" initial={false}>

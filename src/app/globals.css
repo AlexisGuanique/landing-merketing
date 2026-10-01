@@ -195,11 +195,11 @@ html.theme-transitioning *::after {
   inset: -1.5px;
   z-index: -1;
   border-radius: inherit;
-  background: conic-gradient(from var(--angle, 0deg), #fb7185, #db2777, #7e22ce, #fb7185);
+  background: conic-gradient(from var(--angle, 0deg), #9f1239, #9d174d, #6b21a8, #9f1239);
   animation: spin-border 5s linear infinite;
 }
 .dark .gradient-border::before {
-  background: conic-gradient(from var(--angle, 0deg), #8b5cf6, #d946ef, #a78bfa, #8b5cf6);
+  background: conic-gradient(from var(--angle, 0deg), #2e1065, #701a75, #581c87, #2e1065);
 }
 @property --angle {
   syntax: "<angle>";
