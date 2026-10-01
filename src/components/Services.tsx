@@ -3,28 +3,30 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Camera, Globe, TrendingUp, Users, type LucideIcon } from "lucide-react";
-import { services } from "@/lib/constants";
+import { serviceCatalog } from "@/lib/constants";
+import type { Dictionary } from "@/i18n/types";
 import { SectionHeading } from "./ui/SectionHeading";
 import { TiltCard } from "./ui/TiltCard";
 
 const icons: Record<string, LucideIcon> = { Users, Globe, TrendingUp, Camera };
 
-export function Services() {
+export function Services({ copy }: { copy: Dictionary["services"] }) {
   return (
     <section id="servicios" className="relative py-28">
       <div className="mx-auto max-w-6xl px-6">
         <SectionHeading
-          eyebrow="Qué hacemos"
-          title="Todo lo que tu marca necesita para crecer online"
-          description="Combinamos estrategia, diseño y contenido para que tu emprendimiento tenga una presencia digital profesional de punta a punta."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
         />
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2">
-          {services.map((service, i) => {
+          {serviceCatalog.map((service, i) => {
             const Icon = icons[service.icon];
+            const content = copy.items[service.id];
             return (
               <motion.div
-                key={service.title}
+                key={service.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -34,7 +36,7 @@ export function Services() {
                   <div className="relative h-48 w-full overflow-hidden">
                     <Image
                       src={`${service.image}?auto=format&fit=crop&w=900&q=75`}
-                      alt={service.title}
+                      alt={content.title}
                       fill
                       sizes="(min-width: 640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
@@ -49,13 +51,13 @@ export function Services() {
 
                   <div className="p-6">
                     <h3 className="font-display text-lg font-bold text-[#3b2430] dark:text-white">
-                      {service.title}
+                      {content.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-[#7a6270] dark:text-white/60">
-                      {service.description}
+                      {content.description}
                     </p>
                     <ul className="mt-5 space-y-2 border-t border-pink-100 pt-4 dark:border-white/10">
-                      {service.points.map((point) => (
+                      {content.points.map((point) => (
                         <li key={point} className="flex items-start gap-2 text-xs text-[#8f7885] dark:text-white/50">
                           <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-pink-400 shadow-[0_0_6px_1px_rgba(244,114,182,0.6)] dark:bg-fuchsia-400 dark:shadow-[0_0_6px_1px_rgba(217,70,239,0.6)]" />
                           {point}

@@ -3,22 +3,22 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { faqs } from "@/lib/constants";
+import type { Dictionary } from "@/i18n/types";
 import { SectionHeading } from "./ui/SectionHeading";
 
-export function Faq() {
+export function Faq({ copy }: { copy: Dictionary["faq"] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
     <section id="faq" className="relative py-28">
       <div className="mx-auto max-w-3xl px-6">
         <SectionHeading
-          eyebrow="Preguntas frecuentes"
-          title="Todo lo que necesitás saber"
+          eyebrow={copy.eyebrow}
+          title={copy.title}
         />
 
         <div className="mt-14 space-y-3">
-          {faqs.map((faq, i) => {
+          {copy.items.map((faq, i) => {
             const isOpen = openIndex === i;
             const buttonId = `faq-button-${i}`;
             const panelId = `faq-panel-${i}`;

@@ -2,14 +2,19 @@
 
 import { MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/constants";
+import type { Dictionary } from "@/i18n/types";
 
-export function WhatsAppFloat() {
+export function WhatsAppFloat({
+  copy,
+}: {
+  copy: Dictionary["whatsappFloat"];
+}) {
   return (
     <a
-      href={whatsappLink("Hola! Me gustaría más información sobre sus servicios.")}
+      href={whatsappLink(copy.message)}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Escribir por WhatsApp"
+      aria-label={copy.label}
       className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center"
     >
       <span className="animate-pulse-ring absolute inset-0 rounded-full bg-emerald-400/60" />
