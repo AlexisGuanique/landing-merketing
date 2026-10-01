@@ -32,13 +32,13 @@ export function Process() {
               transition={{ duration: 0.5, delay: i * 0.12 }}
             >
               <TiltCard className="relative rounded-2xl border border-pink-200/60 bg-white/70 p-6 dark:border-white/10 dark:bg-white/[0.03]">
-                <span className="relative z-10 font-display text-3xl font-extrabold text-pink-300/50 dark:text-white/15">
+                <span className="relative z-10 font-display text-3xl font-extrabold text-pink-600 dark:text-fuchsia-300">
                   {item.step}
                 </span>
                 <h3 className="relative z-10 mt-3 font-display text-base font-bold text-[#3b2430] dark:text-white">
                   {item.title}
                 </h3>
-                <p className="relative z-10 mt-2 text-sm leading-relaxed text-[#7a6270] dark:text-white/60">
+                <p className="relative z-10 mt-2 text-sm leading-relaxed text-[#7a6270] dark:text-white/70">
                   {item.description}
                 </p>
               </TiltCard>

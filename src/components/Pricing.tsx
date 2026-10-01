@@ -30,38 +30,73 @@ export function Pricing() {
               <TiltCard
                 className={`relative flex h-full flex-col rounded-3xl p-7 ${
                   plan.featured
-                    ? "gradient-border bg-white shadow-2xl shadow-pink-300/30 dark:bg-[#0a0a14] dark:shadow-fuchsia-500/10"
+                    ? "gradient-border bg-[#6b163f] shadow-2xl shadow-pink-300/30 dark:bg-[#0a0a14] dark:shadow-fuchsia-500/10"
                     : "glass-card"
                 }`}
               >
                 {plan.featured && (
-                  <span className="absolute -top-3.5 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-[0_0_20px_-2px_rgba(244,114,182,0.7)] dark:from-violet-500 dark:via-fuchsia-500 dark:to-purple-600 dark:shadow-[0_0_20px_-2px_rgba(168,85,247,0.8)]">
+                  <span className="absolute -top-3.5 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow-[0_0_20px_-2px_rgba(244,114,182,0.7)] dark:from-violet-700 dark:via-fuchsia-700 dark:to-purple-800 dark:shadow-[0_0_20px_-2px_rgba(168,85,247,0.8)]">
                     <Sparkles className="h-3.5 w-3.5" />
                     Más elegido
                   </span>
                 )}
 
-                <h3 className="relative z-10 font-display text-xl font-bold text-[#3b2430] dark:text-white">
+                <h3
+                  className={`relative z-10 font-display text-xl font-bold ${
+                    plan.featured ? "text-white" : "text-[#3b2430] dark:text-white"
+                  }`}
+                >
                   {plan.name}
                 </h3>
-                <p className="relative z-10 mt-2 text-sm text-[#7a6270] dark:text-white/60">{plan.description}</p>
+                <p
+                  className={`relative z-10 mt-2 text-sm ${
+                    plan.featured ? "text-white/85" : "text-[#7a6270] dark:text-white/60"
+                  }`}
+                >
+                  {plan.description}
+                </p>
 
                 <div className="relative z-10 mt-6 flex items-end gap-1.5">
                   {plan.price !== "Personalizado" && (
-                    <span className="font-display text-4xl font-extrabold text-[#3b2430] dark:text-white">$</span>
+                    <span
+                      className={`font-display text-4xl font-extrabold ${
+                        plan.featured ? "text-white" : "text-[#3b2430] dark:text-white"
+                      }`}
+                    >
+                      $
+                    </span>
                   )}
-                  <span className="font-display text-4xl font-extrabold text-[#3b2430] dark:text-white">
+                  <span
+                    className={`font-display text-4xl font-extrabold ${
+                      plan.featured ? "text-white" : "text-[#3b2430] dark:text-white"
+                    }`}
+                  >
                     {plan.price}
                   </span>
                   {plan.period && (
-                    <span className="pb-1 text-sm text-[#a4909d] dark:text-white/50">/ {plan.period}</span>
+                    <span
+                      className={`pb-1 text-sm ${
+                        plan.featured ? "text-white/80" : "text-[#a4909d] dark:text-white/50"
+                      }`}
+                    >
+                      / {plan.period}
+                    </span>
                   )}
                 </div>
 
                 <ul className="relative z-10 mt-7 flex-1 space-y-3.5">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-sm text-[#5c4753] dark:text-white/75">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-pink-500 dark:text-fuchsia-300" />
+                    <li
+                      key={feature}
+                      className={`flex items-start gap-2.5 text-sm ${
+                        plan.featured ? "text-white/90" : "text-[#5c4753] dark:text-white/75"
+                      }`}
+                    >
+                      <Check
+                        className={`mt-0.5 h-4 w-4 shrink-0 ${
+                          plan.featured ? "text-pink-100 dark:text-fuchsia-300" : "text-pink-500 dark:text-fuchsia-300"
+                        }`}
+                      />
                       {feature}
                     </li>
                   ))}
@@ -73,7 +108,7 @@ export function Pricing() {
                   rel="noopener noreferrer"
                   className={`relative z-10 mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition-shadow ${
                     plan.featured
-                      ? "bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 text-white shadow-lg shadow-pink-300/40 hover:shadow-[0_0_30px_-4px_rgba(192,132,252,0.6)] dark:from-violet-500 dark:via-fuchsia-500 dark:to-purple-600 dark:shadow-fuchsia-500/20 dark:hover:shadow-[0_0_30px_-4px_rgba(217,70,239,0.7)]"
+                      ? "bg-gradient-to-r from-rose-500 via-pink-600 to-purple-600 text-white shadow-lg shadow-pink-300/40 hover:shadow-[0_0_30px_-4px_rgba(192,132,252,0.6)] dark:from-violet-700 dark:via-fuchsia-700 dark:to-purple-800 dark:shadow-fuchsia-500/20 dark:hover:shadow-[0_0_30px_-4px_rgba(217,70,239,0.7)]"
                       : "border border-pink-200 bg-white/70 text-[#3b2430] hover:bg-white dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
                   }`}
                 >

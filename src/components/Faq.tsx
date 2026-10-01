@@ -20,6 +20,9 @@ export function Faq() {
         <div className="mt-14 space-y-3">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
+            const buttonId = `faq-button-${i}`;
+            const panelId = `faq-panel-${i}`;
+
             return (
               <motion.div
                 key={faq.question}
@@ -27,10 +30,14 @@ export function Faq() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="glass-card overflow-hidden rounded-2xl transition-colors hover:border-pink-300/50 dark:hover:border-fuchsia-400/30"
+                className="glass-card overflow-hidden rounded-2xl transition-colors hover:border-pink-300/50 has-[button:focus-visible]:ring-2 has-[button:focus-visible]:ring-pink-600 has-[button:focus-visible]:ring-offset-2 has-[button:focus-visible]:ring-offset-[#fff8fb] dark:hover:border-fuchsia-400/30 dark:has-[button:focus-visible]:ring-fuchsia-300 dark:has-[button:focus-visible]:ring-offset-[#05060a]"
               >
                 <button
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                  id={buttonId}
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-5 text-left transition-[background-color,box-shadow] focus-visible:bg-pink-100 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-pink-600 dark:focus-visible:bg-fuchsia-400/15 dark:focus-visible:ring-fuchsia-300"
                   onClick={() => setOpenIndex(isOpen ? null : i)}
                 >
                   <span className="font-display text-sm font-bold text-[#3b2430] sm:text-base dark:text-white">
@@ -43,6 +50,10 @@ export function Faq() {
                   />
                 </button>
                 <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={buttonId}
+                  aria-hidden={!isOpen}
                   className={`grid transition-all duration-300 ease-out ${
                     isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                   }`}
